@@ -1,16 +1,4 @@
-/* SET 2 - INSURANCE PREMIUM PROCESSING
-   Assumed existing tables:
-   Customers(CustomerID, CustomerName, Email, Phone, ...)
-   Policies(PolicyID, CustomerID, AgentID, PolicyType, Premium,
-            DueDate, Status, NoClaimYears, ...)
 
-   Sensitive customer columns (for example DOB, national ID, bank details)
-   are deliberately not selected in the view.
-*/
-
--- Change the database name to your actual insurance database.
--- USE InsuranceDB;
--- GO
 
 CREATE OR ALTER VIEW dbo.vw_policy_due
 AS
