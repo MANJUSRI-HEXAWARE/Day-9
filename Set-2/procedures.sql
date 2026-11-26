@@ -1,19 +1,3 @@
-/* SET 2 - INSURANCE PREMIUM PROCESSING
-   Assumed table columns:
-   Customers(CustomerID, CustomerName, Email, Phone, ...)
-   Policies(PolicyID, CustomerID, AgentID, PolicyType, Premium,
-            DueDate, Status, NoClaimYears)
-   Claims(ClaimID, PolicyID, ClaimStatus)
-
-   Business-rule assumptions:
-   - 5% discount for each claim-free year, maximum 25%.
-   - Renewal extends DueDate by one year.
-   - A pending claim is identified by ClaimStatus = 'Pending'.
-*/
-
--- Change the database name to your actual insurance database.
--- USE InsuranceDB;
--- GO
 
 /* Audit table for policy renewals */
 IF OBJECT_ID('dbo.PolicyRenewalAudit', 'U') IS NULL
@@ -31,7 +15,7 @@ BEGIN
 END;
 GO
 
-/* Task 3a: scalar function for no-claim discount */
+/* Task 3 */
 CREATE OR ALTER FUNCTION dbo.fn_PremiumWithNoClaimDiscount
 (
     @BasePremium DECIMAL(12,2),
@@ -54,7 +38,6 @@ BEGIN
 END;
 GO
 
-/* Task 3b: table-valued function for an agent's renewal quotes */
 CREATE OR ALTER FUNCTION dbo.fn_AgentRenewalQuotes
 (
     @AgentID INT
@@ -83,7 +66,7 @@ RETURN
 );
 GO
 
-/* Task 2: renew a policy, validate it, recalculate premium and audit it */
+/* Task 2*/
 CREATE OR ALTER PROCEDURE dbo.usp_RenewPolicy
     @PolicyID INT
 AS
