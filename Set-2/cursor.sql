@@ -1,10 +1,3 @@
-/* SET 2 - INSURANCE PREMIUM PROCESSING
-   Assumed table:
-   Policies(PolicyID, DueDate, Status)
-
-   A policy is treated as having a lapsed premium when its due date
-   is earlier than today and its current status is Active.
-*/
 
 /* Audit table for lapsed policy status updates */
 IF OBJECT_ID('dbo.PolicyLapseAudit', 'U') IS NULL
@@ -22,7 +15,7 @@ BEGIN
 END;
 GO
 
-/* Task 4a: cursor implementation */
+
 CREATE OR ALTER PROCEDURE dbo.usp_LapsePolicies_Cursor
 AS
 BEGIN
@@ -84,7 +77,7 @@ BEGIN
 END;
 GO
 
-/* Task 4b: set-based equivalent */
+
 CREATE OR ALTER PROCEDURE dbo.usp_LapsePolicies_SetBased
 AS
 BEGIN
