@@ -1,21 +1,5 @@
-/* SET 3 - TELECOM LOW-BALANCE FOLLOW-UP
-   Assumed tables:
-   Subscribers(SubscriberID, SubscriberName, PhoneNumber, ServiceType,
-               Balance, PlanID, ValidityEndDate)
-   Plans(PlanID, PlanName, IsActive, MinRechargeAmount, MaxRechargeAmount,
-         ValidityDays)
-   RechargeHistory(RechargeID, SubscriberID, PlanID, Amount, RechargeDate)
 
-   usp_Recharge expects an active plan and a positive amount within the
-   plan's configured minimum and maximum recharge amount.
-*/
-
--- Change the database name to your actual telecom database.
--- USE TelecomDB;
--- GO
-
-/* Task 2: recharge procedure.
-   Updates balance and recharge history atomically and returns new balance. */
+/* Task 2 */
 CREATE OR ALTER PROCEDURE dbo.usp_Recharge
     @SubscriberID INT,
     @PlanID INT,
@@ -102,7 +86,7 @@ BEGIN
 END;
 GO
 
-/* Task 3a: scalar function - number of validity days remaining */
+/* Task 3 */
 CREATE OR ALTER FUNCTION dbo.fn_ValidityDaysLeft
 (
     @SubscriberID INT
@@ -127,7 +111,7 @@ BEGIN
 END;
 GO
 
-/* Task 3b: inline table-valued function - last five recharges */
+/* Task 3*/
 CREATE OR ALTER FUNCTION dbo.fn_LastFiveRecharges
 (
     @SubscriberID INT
