@@ -1,20 +1,5 @@
-/* SET 3 - TELECOM LOW-BALANCE FOLLOW-UP
-   Assumed tables and columns:
-   Subscribers(SubscriberID, SubscriberName, PhoneNumber, ServiceType,
-               Balance, PlanID, ValidityEndDate)
-   Plans(PlanID, PlanName, IsActive, ...)
-   RechargeHistory(RechargeID, SubscriberID, PlanID, Amount, RechargeDate)
 
-   Row-level hiding of postpaid users is implemented by filtering
-   ServiceType = 'Prepaid' in vw_prepaid_subscribers.
-*/
-
--- Change the database name to your actual telecom database.
--- USE TelecomDB;
--- GO
-
-/* Task 1a: prepaid subscribers only.
-   Postpaid rows are excluded from this view. */
+/* Task 1 */
 CREATE OR ALTER VIEW dbo.vw_prepaid_subscribers
 AS
     SELECT
@@ -28,7 +13,7 @@ AS
     WHERE s.ServiceType = 'Prepaid';
 GO
 
-/* Task 1b: recharge summary per subscriber */
+
 CREATE OR ALTER VIEW dbo.vw_recharge_summary
 AS
     SELECT
