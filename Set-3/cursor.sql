@@ -1,10 +1,3 @@
-/* SET 3 - TELECOM LOW-BALANCE FOLLOW-UP
-   Assumed Subscribers columns:
-   SubscriberID, SubscriberName, PhoneNumber, ServiceType, Balance
-
-   NotificationLog columns are created below.
-   Low-balance threshold: below 50 currency units.
-*/
 
 IF OBJECT_ID('dbo.NotificationLog', 'U') IS NULL
 BEGIN
@@ -24,8 +17,7 @@ BEGIN
 END;
 GO
 
-/* Task 4a: cursor inserts one notification per prepaid subscriber
-   whose balance is below 50. */
+/* Task 4 */
 CREATE OR ALTER PROCEDURE dbo.usp_CreateLowBalanceNotifications_Cursor
 AS
 BEGIN
@@ -75,7 +67,7 @@ BEGIN
 END;
 GO
 
-/* Task 4b: set-based equivalent */
+ 
 CREATE OR ALTER PROCEDURE dbo.usp_CreateLowBalanceNotifications_SetBased
 AS
 BEGIN
@@ -94,11 +86,7 @@ BEGIN
 END;
 GO
 
-/* Task 4c: compare execution time.
-   Each method is timed separately. Existing notification rows are not
-   deleted; each execution creates a fresh notification for each matching
-   subscriber, as required by the task. Run this test when no other session
-   is changing subscriber balances for a fair comparison. */
+/* Task 4 */
 
 DECLARE @StartTime DATETIME2(7);
 DECLARE @CursorTimeMicroseconds BIGINT;
